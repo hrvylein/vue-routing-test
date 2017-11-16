@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#0072c6">
+  <link href="static/lib/metro/css/metro.css" rel="stylesheet">
+  <link href="static/lib/metro/css/metro-icons.min.css" rel="stylesheet">
+  <link href="static/lib/metro/css/metro-responsive.min.css" rel="stylesheet">
+  <link href="static/lib/metro/css/metro-colors.min.css" rel="stylesheet">
+  <link href="static/lib/metro/css/metro-schemes.min.css" rel="stylesheet">
+  <link href="static/lib/gridforms/gridforms.css" rel="stylesheet">
+  <link href="static/css/jquery-ui.min.css" rel="stylesheet">
+  <link href="static/css/jquery-ui.structure.min.css" rel="stylesheet">
+  <link href="static/css/jquery-ui.theme.min.css" rel="stylesheet">
+  <link href="static/css/select2.min.css" rel="stylesheet">
+  <link href="static/css/MonthPicker.css" rel="stylesheet">
+  <link href="static/css/table-section.css" rel="stylesheet">
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/jquery-ui.min.js"></script>
+  <script src="static/lib/metro/js/metro.js"></script>
+  <script src="static/lib/gridforms/gridforms.js"></script>
+  <script src="static/js/select2.full.min.js"></script>
+  <script src="static/js/clipboard.min.js"></script>
+  <script src="static/js/MonthPicker.js"></script>
+  <script src="static/js/jquery.numeric.min.js"></script>
+  <script src="static/js/momentjs-locales.min.js"></script>
+  <script src="static/js/table-section.js"></script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="static/favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="static/favicon/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="static/favicon/manifest.json">
+  <link rel="mask-icon" href="static/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="static/favicon/favicon.ico">
+  <meta name="msapplication-config" content="static/favicon/browserconfig.xml">
+  <title>Test</title>
+  <style>
+    fieldset {
+      border: 1px solid #CCC;
+    }
+
+    legend {
+      color: #CCC;
+    }
+
+    a.back-to-top {
+      display: none;
+      width: 50px;
+      height: 50px;
+
+      position: fixed;
+      z-index: 999;
+      right: 20px;
+      bottom: 20px;
+      background: #000;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      border-radius: 30px;
+      opacity: 0.6;
+    }
+
+    @media print {
+      .hide-for-print {
+        display: none !important;
+      }
+    }
+
+    .cell_link {
+      display: block;
+      margin: -10em;
+      padding: 10em;
+    }
+
+    .badge {
+      font-size: .7em;
+      background: red;
+      color: white;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      border-radius: 50%;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      text-align: center;
+      line-height: 18px;
+    }
+
+    .hidden_notification_badge {
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body class="bg-grayDark">
+  <div id="app">
+    <div id="top" style="margin-top: 3.5rem"></div>
+    <!-- Hier wird der Content stehen-->
+    <router-view/>
+    <div id="bottom"></div>
+    <a href="#top" class="back-to-top align-center v-align-middle"><span class="mif-arrow-up mif-3x fg-white"></span></a>
+  </div>
+  <script>
+    $('a[href^="#"]').on('click', function(e) {
+      e.preventDefault();
+      var $topmargin = $('.main-content');
+
+      var target = this.hash;
+      var $target = $(target);
+
+      var new_top_value = $target.offset().top - parseInt($topmargin.css("margin-top"));
+
+      $('html, body').stop().animate({
+        'scrollTop': new_top_value
+      }, 900, 'swing', function() {
+        window.location.hash = target;
+      });
+    });
+    var amountScrolled = 300;
+
+    $(window).scroll(function() {
+      if ($(window).scrollTop() > amountScrolled) {
+        $('a.back-to-top').fadeIn('slow');
+      } else {
+        $('a.back-to-top').fadeOut('slow');
+      }
+    });
+  </script>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>
